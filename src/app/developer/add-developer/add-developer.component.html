@@ -17,14 +17,18 @@
       </div>
       <div class="form-group">
         <label>Founded:</label>
+        <div>
         <input type="text" class="form-control" id="founded" placeholder="dd/mm/yyyy" name="founded" formControlName="founded">
+        <span class="text-danger" *ngIf="displayMessage.founded">
+          <p [innerHTML]="displayMessage.founded"></p>
+        </span>
+      </div>
       </div>
       
       <div class="form-group">
         <label>Websiste:</label>
         <input type="text" class="form-control" id="webSite" placeholder="http://" name="webSite" formControlName="webSite">
-      </div>    
-      
+      </div>          
       <button type="submit" class="btn btn-default" [disabled]='!developerForm.valid'>Submit</button>
     </form>
     </div>
