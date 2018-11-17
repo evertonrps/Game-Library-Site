@@ -16,9 +16,19 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+//toastr
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { AddDeveloperComponent } from './developer/add-developer/add-developer.component';
+import { AddGameComponent } from './games/add-game/add-game.component';
+import { DeveloperService } from './services/developer.service';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -29,18 +39,34 @@ import { AddDeveloperComponent } from './developer/add-developer/add-developer.c
     MainPrincipalComponent,
     FormularioComponent,
     ListGamesComponent,
-    AddDeveloperComponent
+    AddDeveloperComponent,
+    AddGameComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     ReactiveFormsModule,
     CollapseModule.forRoot(),
     CarouselModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(
+      {
+        timeOut: 3000,        
+        preventDuplicates: true,
+        autoDismiss : true,
+        progressBar:true,
+        positionClass: "toast-top-right"
+      }
+    ), // ToastrModule added
     RouterModule.forRoot(rootRouterConfig, {useHash: false})
   ],
-  providers: [],
+  providers: [
+    DeveloperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,9 +10,12 @@ import { Developer } from '../Models/developer';
 // import 'rxjs/add/observable/merge';
 
 //Versao 6
-import { Observable, of, Subject, Subscription, merge,fromEvent, from  } from 'rxjs';
+import { Observable, of, Subject, Subscription, merge,fromEvent, from, observable  } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { GenericValidator } from 'src/app/common/validation/generic-form-validator';
+import { DeveloperService } from 'src/app/services/developer.service';
+import { Router } from '@angular/router';
+import { ToastrService, Toast } from 'ngx-toastr';
 
 
 
@@ -30,10 +33,11 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
   developerForm : FormGroup;
   displayMessage: { [key: string]: string } = {};
 
-  public erros: any[] = [];
+  public errors: any[] = [];
   public developer : Developer;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private developerService: DeveloperService,
+    private router: Router,private toastr: ToastrService) { 
     this.validationMessages = {
       name: {
         required: 'O Nome é requerido.',
@@ -74,7 +78,39 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
       {
         //mapeamento
         let o = Object.assign({}, this.developer, this.developerForm.value)
+        o.founded = "2018/01/01";
+
+        this.developerService.adicionarDeveloper(o)
+        .subscribe(
+        result => { this.onSaveComplete() },
+        error => {
+          this.onError(error);
+        });
       }
+  }
+  onError(error) {
+    this.toastr.error('Ocorreu um erro no processamento', 'Ops! :(');    
+    this.errors = JSON.parse(error._body).errors;
+  }
+  onSaveComplete(): void {
+    this.developerForm.reset();
+    this.errors = [];
+    let tsrConfig ={
+      autoDismiss : true,
+    }
+    this.toastr.success('Developer Registrado com Sucesso!', 'Oba :D');
+  }
+
+  //   this.toastr.success('Developer Registrado com Sucesso!', 'Oba :D', { autoDismiss: 'controlled' })
+  //   .then((toast: Toast) => {
+  //     setTimeout(() => {
+  //       // this.toastr.dismissToast(toast);
+  //       this.router.navigate(['/games']);
+  //     }, 2500);
+  //   });
+  // }
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
 }
