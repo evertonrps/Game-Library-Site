@@ -27,6 +27,9 @@ import { AddDeveloperComponent } from './developer/add-developer/add-developer.c
 import { AddGameComponent } from './games/add-game/add-game.component';
 import { DeveloperService } from './services/developer.service';
 import { HttpModule } from '@angular/http';
+import { ListDevelopersComponent } from './developer/list-developers/list-developers.component';
+import { AuthService } from './services/auth.service';
+import { GameService } from './services/game.service';
 
 
 @NgModule({
@@ -39,7 +42,8 @@ import { HttpModule } from '@angular/http';
     FormularioComponent,
     ListGamesComponent,
     AddDeveloperComponent,
-    AddGameComponent
+    AddGameComponent,
+    ListDevelopersComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ import { HttpModule } from '@angular/http';
     RouterModule.forRoot(rootRouterConfig, {useHash: false})
   ],
   providers: [
-    DeveloperService
+    DeveloperService,
+    GameService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

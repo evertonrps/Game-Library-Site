@@ -36,8 +36,10 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
   public errors: any[] = [];
   public developer : Developer;
 
+  public myRetorno: string;
+
   constructor(private fb: FormBuilder, private developerService: DeveloperService,
-    private router: Router,private toastr: ToastrService) { 
+    private router: Router,public toastr: ToastrService) { 
     this.validationMessages = {
       name: {
         required: 'O Nome é requerido.',
@@ -93,6 +95,7 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
     this.errors = JSON.parse(error._body).errors;
   }
   onSaveComplete(): void {
+    this.myRetorno = "Entrei";
     this.developerForm.reset();
     this.errors = [];
     let tsrConfig ={

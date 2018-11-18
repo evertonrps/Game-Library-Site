@@ -28,17 +28,16 @@
 
       <div class="form-group" [ngClass]="{'has-error': displayMessage.developerId}">
           <label>Developer</label>
-          <div class="">
-            <select class="form-control" id="developerId" formControlName="developerId">
+          <div class="" *ngIf='developers && developers.item.length'>
+            <select class="form-control" id="developerId" name="developerId" formControlName="developerId">
               <option value="">Selecione...</option>
-              <option value="1">Nintendo</option>
-              <option value="2">Sega</option>
+              <option *ngFor="let developer of developers.item" value="{{developer.id}}">{{ developer.name }}</option>
             </select>
             <span class="text-danger" *ngIf="displayMessage.developerId">
               <p [innerHTML]="displayMessage.developerId"></p>
             </span>
           </div>
       </div>
+      <button type="submit" class="btn btn-default" [disabled]='!gameForm.valid'>Submit</button>
     </form>  
-    <button type="submit" class="btn btn-default" [disabled]='!gameForm.valid'>Submit</button>
   </div>
