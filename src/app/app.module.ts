@@ -16,7 +16,6 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 //toastr
 import { CommonModule } from '@angular/common';
@@ -48,8 +47,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     ReactiveFormsModule,
     CollapseModule.forRoot(),
-    CarouselModule.forRoot(),
-    BsDatepickerModule.forRoot(),
+    CarouselModule.forRoot(),    
     BsDropdownModule.forRoot(),
     CommonModule,
     BrowserAnimationsModule, // required animations module
