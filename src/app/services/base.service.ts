@@ -4,7 +4,7 @@ import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 
 export abstract class BaseService {
 
-    protected UrlServiceV1: string = "http://localhost:55333/api/";
+    protected UrlServiceV1: string = "https://localhost/GameLibrary/api/";
     
     protected serviceError(error: Response | any) {
         let errMsg: string;

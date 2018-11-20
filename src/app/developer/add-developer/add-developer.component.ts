@@ -36,7 +36,6 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
   public errors: any[] = [];
   public developer : Developer;
 
-  public myRetorno: string;
 
   constructor(private fb: FormBuilder, private developerService: DeveloperService,
     private router: Router,public toastr: ToastrService) { 
@@ -80,7 +79,7 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
       {
         //mapeamento
         let o = Object.assign({}, this.developer, this.developerForm.value)
-        o.founded = "2018/01/01";
+        //o.founded = "2018/01/01";
 
         this.developerService.adicionarDeveloper(o)
         .subscribe(
@@ -91,11 +90,10 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
       }
   }
   onError(error) {
-    this.toastr.error('Ocorreu um erro no processamento', 'Ops! :(');    
+    this.toastr.error('Falha ao inserir', 'Ops! :(');    
     this.errors = JSON.parse(error._body).errors;
   }
-  onSaveComplete(): void {
-    this.myRetorno = "Entrei";
+  onSaveComplete(): void {    
     this.developerForm.reset();
     this.errors = [];
     let tsrConfig ={
