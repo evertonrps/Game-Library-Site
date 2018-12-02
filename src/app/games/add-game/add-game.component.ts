@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, ViewContainerRef } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Game } from '../Models/Game';
 
 import { Observable, of, Subject, Subscription, merge,fromEvent, from  } from 'rxjs';
@@ -10,8 +10,16 @@ import { Developer } from 'src/app/developer/Models/developer';
 import { ToastrService } from 'ngx-toastr';
 import { GameService } from 'src/app/services/game.service';
 import { Router } from '@angular/router';
+import { PlatformTypeService } from 'src/app/services/platformType.service';
+import { PlatformType } from 'src/app/PlatformType/Models/PlatformType';
+import { ValidateUrl, ValidatePc } from 'src/app/validators/url.validator';
 
-
+// const MyAwesomeRangeValidator: ValidatorFn = (fg: FormGroup) => {
+//   const start = fg.get('Pc').value;
+//   //const end = fg.get('rangeEnd').value;
+//   //return start !== null && end !== null && start < end   ? null : { range: true };
+//   return start == false  ? null : { range: true };
+// };
 
 @Component({
   selector: 'app-add-game',
@@ -29,11 +37,15 @@ export class AddGameComponent implements OnInit, AfterViewInit {
   public errors: any[] = [];
   public game: Game;
   public developers: Developer[];
+  public platformTypes: PlatformType[];
   errorMessage: string;
   public myRetorno : string;
+  console:boolean = false;
+  public mobile:boolean = false;
+
 
   constructor(private fb: FormBuilder, private gameService: GameService,
-    public developerService: DeveloperService, private router: Router,
+    public developerService: DeveloperService, public platformTypeService: PlatformTypeService, private router: Router,
     private toastr: ToastrService) 
     {
     this.validationMessages = {
@@ -48,6 +60,9 @@ export class AddGameComponent implements OnInit, AfterViewInit {
       ,
       developerId: {
         required: 'Informe a produtora'
+      },
+      platformTypeId: {
+        required: 'Informe a produtora'
       }
     };
     this.genericValidator = new GenericValidator(this.validationMessages);
@@ -59,10 +74,16 @@ export class AddGameComponent implements OnInit, AfterViewInit {
       title:['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],      
       description: ['', Validators.maxLength(500)]
       ,developerId:['', [Validators.required]]
+      ,platformTypeId:['', [Validators.required]]
+      ,pc:['', [Validators.required, ValidatePc('pc')]]
     })
 
     this.developerService.obterTodos()
     .subscribe(developers => this.developers = developers,
+    error => this.errorMessage);
+
+    this.platformTypeService.obterTodos()
+    .subscribe(platformTypes => this.platformTypes = platformTypes,
     error => this.errorMessage);
   }
   ngAfterViewInit(): void {
@@ -75,6 +96,20 @@ export class AddGameComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getValor(event: any)
+  {
+    if(event.target.value == 1)
+    {
+      this.console = true;
+      this.mobile = false;
+    }
+    else
+    {
+      this.console = false;
+      this.mobile = true;
+    }
+    console.log('Selected value is: ', event.target.value);
+  }
   addGame()
   {    
     if(this.gameForm.dirty && this.gameForm.valid)
@@ -95,6 +130,22 @@ export class AddGameComponent implements OnInit, AfterViewInit {
       this.onError("Errok kkx");
     }
   }
+
+  ValidateUrl(control: AbstractControl) {
+    if (!control.value.startsWith('https') || !control.value.includes('.io')) {
+      return { validUrl: true };
+    }
+    return null;
+  }
+
+  // MyAwesomeRangeValidator: ValidatorFn = (fg: FormGroup) => {
+  
+  //   //const end = fg.get('rangeEnd').value;
+  //   //return start !== null && end !== null && start < end   ? null : { range: true };
+  //   return this.mobile == false  ? null : { range: true };
+  // };
+  
+
   onError(error) {
     this.toastr.error('Ocorreu um erro no processamento', 'Ops! :(');    
     this.errors = JSON.parse(error._body).errors;

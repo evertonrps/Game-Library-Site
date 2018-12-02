@@ -30,6 +30,7 @@ import { HttpModule } from '@angular/http';
 import { ListDevelopersComponent } from './developer/list-developers/list-developers.component';
 import { AuthService } from './services/auth.service';
 import { GameService } from './services/game.service';
+import { PlatformTypeService } from './services/platformType.service';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { GameService } from './services/game.service';
   providers: [
     DeveloperService,
     GameService,
+    PlatformTypeService,
     AuthService
   ],
   bootstrap: [AppComponent]
