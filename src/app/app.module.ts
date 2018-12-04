@@ -31,6 +31,8 @@ import { ListDevelopersComponent } from './developer/list-developers/list-develo
 import { AuthService } from './services/auth.service';
 import { GameService } from './services/game.service';
 import { PlatformTypeService } from './services/platformType.service';
+import { SliderComponent } from './shared/slider/slider.component';
+import { FormularioDevComponent } from './developer/formulario-dev/formulario-dev.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { PlatformTypeService } from './services/platformType.service';
     ListGamesComponent,
     AddDeveloperComponent,
     AddGameComponent,
-    ListDevelopersComponent
+    ListDevelopersComponent,
+    SliderComponent,
+    FormularioDevComponent
   ],
   imports: [
     BrowserModule,
