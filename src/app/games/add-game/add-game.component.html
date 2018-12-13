@@ -69,12 +69,13 @@
       </div>
 
       <div class="form-group" *ngIf='mobile'>
-        <label class="checkbox-inline">
+        <!-- <label class="checkbox-inline">
           <input type="checkbox" name="favoriteColors" Name="Android"> Android
         </label>
         <label class="checkbox-inline">
           <input type="checkbox" name="favoriteColors" lName="IOS"> IOS
-        </label>
+        </label> -->
+        <app-mobile-combo (mudouItem)="onMudouValor($event)"></app-mobile-combo>
       </div>
 
       <button type="submit" class="btn btn-default" [disabled]='!gameForm.valid'>Submit</button>

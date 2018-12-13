@@ -138,6 +138,10 @@ export class AddGameComponent implements OnInit, AfterViewInit {
     return null;
   }
 
+  onMudouValor(evento: any){
+    console.log("Dentro do evento " + evento.IOS);
+  }
+
   // MyAwesomeRangeValidator: ValidatorFn = (fg: FormGroup) => {
   
   //   //const end = fg.get('rangeEnd').value;

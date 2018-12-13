@@ -33,6 +33,7 @@ import { GameService } from './services/game.service';
 import { PlatformTypeService } from './services/platformType.service';
 import { SliderComponent } from './shared/slider/slider.component';
 import { FormularioDevComponent } from './developer/formulario-dev/formulario-dev.component';
+import { MobileComboComponent } from './shared/componentes/mobile-combo/mobile-combo.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { FormularioDevComponent } from './developer/formulario-dev/formulario-de
     AddGameComponent,
     ListDevelopersComponent,
     SliderComponent,
-    FormularioDevComponent
+    FormularioDevComponent,
+    MobileComboComponent
   ],
   imports: [
     BrowserModule,
