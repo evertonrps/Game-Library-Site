@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, ViewContainerRef, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 import { Developer } from '../Models/developer';
 
@@ -17,8 +17,6 @@ import { DeveloperService } from 'src/app/services/developer.service';
 import { Router } from '@angular/router';
 import { ToastrService, Toast } from 'ngx-toastr';
 
-
-
 @Component({
   selector: 'app-add-developer',
   templateUrl: './add-developer.component.html',
@@ -35,7 +33,6 @@ export class AddDeveloperComponent implements OnInit, AfterViewInit {
 
   public errors: any[] = [];
   public developer : Developer;
-
 
   constructor(private fb: FormBuilder, private developerService: DeveloperService,
     private router: Router,public toastr: ToastrService) { 

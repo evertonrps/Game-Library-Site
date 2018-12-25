@@ -1,83 +1,92 @@
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
 
-  <div class="form-sec">
-    <h4>Game form</h4>
 
-    <form name="qryform" id="qryform" method="post" (ngSubmit)="addGame()" [formGroup]="gameForm" novalidate>
-      <div class="form-group" [ngClass]="{'has-error': displayMessage.title}">
-        <label>Title:</label>
-        <div>
-          <input type="text" class="form-control" id="title" placeholder="Enter Name" name="title" formControlName="title" />
-          <span class="text-danger" *ngIf="displayMessage.title">
-            <p [innerHTML]="displayMessage.title"></p>
-          </span>
-        </div>
+<div class="form-sec">
+  <h4>Game form</h4>
+
+  <form name="qryform" id="qryform" method="post" (ngSubmit)="addGame()" [formGroup]="gameForm" novalidate>
+    <div class="form-group" [ngClass]="{'has-error': displayMessage.title}">
+      <label>Title:</label>
+      <div>
+        <input type="text" class="form-control" id="title" placeholder="Enter Name" name="title" formControlName="title" />
+        <span class="text-danger" *ngIf="displayMessage.title">
+          <p [innerHTML]="displayMessage.title"></p>
+        </span>
       </div>
+    </div>
 
-      <div class="form-group" [ngClass]="{'has-error': displayMessage.description}">
-        <label>Description:</label>
-        <div>
-          <input type="text" class="form-control" id="description" placeholder="Description" name="description"
-            formControlName="description" />
-          <span class="text-danger" *ngIf="displayMessage.description">
-            <p [innerHTML]="displayMessage.description"></p>
-          </span>
-        </div>
+    <div class="form-group" [ngClass]="{'has-error': displayMessage.description}">
+      <label>Description:</label>
+      <div>
+        <input type="text" class="form-control" id="description" placeholder="Description" name="description"
+          formControlName="description" />
+        <span class="text-danger" *ngIf="displayMessage.description">
+          <p [innerHTML]="displayMessage.description"></p>
+        </span>
       </div>
+    </div>
 
-      <div class="form-group" [ngClass]="{'has-error': displayMessage.developerId}">
+    <div class="form-group" [ngClass]="{'has-error': displayMessage.developerId}">
+      <div class="row">
+      <div class="col-md-8" *ngIf='developers && developers.item.length'>
         <label>Developer</label>
-        <div class="" *ngIf='developers && developers.item.length'>
-          <select class="form-control" id="developerId" name="developerId" formControlName="developerId">
-            <option value="">Selecione...</option>
-            <option *ngFor="let developer of developers.item" value="{{developer.id}}">{{ developer.name }}</option>
-          </select>
-          <span class="text-danger" *ngIf="displayMessage.developerId">
-            <p [innerHTML]="displayMessage.developerId"></p>
-          </span>
-        </div>
+        <select class="form-control" id="developerId" name="developerId" formControlName="developerId">
+          <option value="">Selecione...</option>
+          <option *ngFor="let developer of developers.item" value="{{developer.id}}">{{ developer.name }}</option>
+        </select>
+        <span class="text-danger" *ngIf="displayMessage.developerId">
+          <p [innerHTML]="displayMessage.developerId"></p>
+        </span>
       </div>
-
-      <div class="form-group" [ngClass]="{'has-error': displayMessage.platformTypeId}">
-        <label>Platform Type</label>
-        <div class="" *ngIf='platformTypes && platformTypes.item.length'>
-          <select class="form-control" id="platformTypeId" (change)="getValor($event)" name="platformTypeId" formControlName="platformTypeId">
-            <option value="">Selecione...</option>
-            <option *ngFor="let platformType of platformTypes.item" value="{{platformType.id}}">{{ platformType.description }}</option>
-          </select>
-          <span class="text-danger" *ngIf="displayMessage.platformTypeId">
-            <p [innerHTML]="displayMessage.platformTypeId"></p>
-          </span>
-        </div>
+      <div class="form-group">        
+        <br/>
+        <!-- <button class="btn btn-default align-text-bottom" type="button">Adicionar</button> -->
+        <button type="button" class="mt-auto btn btn-primary" style="margin-top:4px; margin-left: 14px;" (click)="openModalWithComponent()">Adicionar Developer</button>        
       </div>
+    </div>
+    </div>
 
-      <div class="form-group" *ngIf='console'>
-        <label class="checkbox-inline">
-          <input type="checkbox" name="favoriteColors" formControlName="pc"> PC
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" name="favoriteColors" Name="PS"> PS
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" name="favoriteColors" Name="XBox"> Xbox
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" name="favoriteColors" Name="Swith"> Swith
-        </label>
+    <div class="form-group" [ngClass]="{'has-error': displayMessage.platformTypeId}">
+      <label>Platform Type</label>
+      <div class="" *ngIf='platformTypes && platformTypes.item.length'>
+        <select class="form-control" id="platformTypeId" (change)="getValor($event)" name="platformTypeId"
+          formControlName="platformTypeId">
+          <option value="">Selecione...</option>
+          <option *ngFor="let platformType of platformTypes.item" value="{{platformType.id}}">{{
+            platformType.description }}</option>
+        </select>
+        <span class="text-danger" *ngIf="displayMessage.platformTypeId">
+          <p [innerHTML]="displayMessage.platformTypeId"></p>
+        </span>
       </div>
+    </div>
 
-      <div class="form-group" *ngIf='mobile'>
-        <!-- <label class="checkbox-inline">
+    <div class="form-group" *ngIf='console'>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="favoriteColors" formControlName="pc"> PC
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="favoriteColors" Name="PS"> PS
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="favoriteColors" Name="XBox"> Xbox
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="favoriteColors" Name="Swith"> Swith
+      </label>
+    </div>
+
+    <div class="form-group" *ngIf='mobile'>
+      <!-- <label class="checkbox-inline">
           <input type="checkbox" name="favoriteColors" Name="Android"> Android
         </label>
         <label class="checkbox-inline">
           <input type="checkbox" name="favoriteColors" lName="IOS"> IOS
         </label> -->
-        <app-mobile-combo (mudouItem)="onMudouValor($event)"></app-mobile-combo>
-      </div>
+      <app-mobile-combo (mudouItem)="onMudouValor($event)"></app-mobile-combo>
+    </div>
 
-      <button type="submit" class="btn btn-default" [disabled]='!gameForm.valid'>Submit</button>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-default" [disabled]='!gameForm.valid'>Submit</button>
+  </form>
+</div>

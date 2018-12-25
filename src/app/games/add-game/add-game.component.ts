@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Game } from '../Models/Game';
 
@@ -13,6 +13,9 @@ import { Router } from '@angular/router';
 import { PlatformTypeService } from 'src/app/services/platformType.service';
 import { PlatformType } from 'src/app/PlatformType/Models/PlatformType';
 import { ValidateUrl, ValidatePc } from 'src/app/validators/url.validator';
+import { AddDeveloperComponent } from 'src/app/developer/add-developer/add-developer.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BaseModalComponent } from 'src/app/shared/base-modal/base-modal.component';
 
 // const MyAwesomeRangeValidator: ValidatorFn = (fg: FormGroup) => {
 //   const start = fg.get('Pc').value;
@@ -42,11 +45,12 @@ export class AddGameComponent implements OnInit, AfterViewInit {
   public myRetorno : string;
   console:boolean = false;
   public mobile:boolean = false;
-
+  bsModalRef: BsModalRef;
+  subscriptions: Subscription[] = [];
 
   constructor(private fb: FormBuilder, private gameService: GameService,
     public developerService: DeveloperService, public platformTypeService: PlatformTypeService, private router: Router,
-    private toastr: ToastrService) 
+    private toastr: ToastrService, private modalService: BsModalService, private changeDetection: ChangeDetectorRef) 
     {
     this.validationMessages = {
       title: {
@@ -66,6 +70,21 @@ export class AddGameComponent implements OnInit, AfterViewInit {
       }
     };
     this.genericValidator = new GenericValidator(this.validationMessages);
+
+    // this.subscriptions.push(
+    //   this.modalService.onShow.subscribe((reason: string) => {
+    //     console.log('onShow event has been fired');
+    //   })
+    // );
+
+    this.subscriptions.push(
+      this.modalService.onHide.subscribe(() => {
+        //recarregar combo
+       // console.log('onHide event has been fired');
+       this.CarregarDevelopers();
+      })
+    );
+
    }
 
   ngOnInit() {
@@ -75,17 +94,20 @@ export class AddGameComponent implements OnInit, AfterViewInit {
       description: ['', Validators.maxLength(500)]
       ,developerId:['', [Validators.required]]
       ,platformTypeId:['', [Validators.required]]
-      ,pc:['', [Validators.required, ValidatePc('pc')]]
+     // ,pc:['', [Validators.required, ValidatePc('pc')]]
     })
 
-    this.developerService.obterTodos()
-    .subscribe(developers => this.developers = developers,
-    error => this.errorMessage);
+    this.CarregarDevelopers();
 
     this.platformTypeService.obterTodos()
     .subscribe(platformTypes => this.platformTypes = platformTypes,
     error => this.errorMessage);
   }
+  private CarregarDevelopers() {
+    this.developerService.obterTodos()
+      .subscribe(developers => this.developers = developers, error => this.errorMessage);
+  }
+
   ngAfterViewInit(): void {
     let controlBlurs: Observable<any>[] = this.formInputElements
       .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
@@ -149,7 +171,6 @@ export class AddGameComponent implements OnInit, AfterViewInit {
   //   return this.mobile == false  ? null : { range: true };
   // };
   
-
   onError(error) {
     this.toastr.error('Ocorreu um erro no processamento', 'Ops! :(');    
     this.errors = JSON.parse(error._body).errors;
@@ -162,4 +183,10 @@ export class AddGameComponent implements OnInit, AfterViewInit {
     }
     this.toastr.success('Game Registrado com Sucesso!', 'Victory :D');
   }
+
+  openModalWithComponent() {
+
+    this.bsModalRef = this.modalService.show(BaseModalComponent);
+  }
+    
 }

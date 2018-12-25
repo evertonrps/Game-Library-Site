@@ -6,6 +6,7 @@ import { AddDeveloperComponent } from './developer/add-developer/add-developer.c
 import { AddGameComponent } from './games/add-game/add-game.component';
 import { ListDevelopersComponent } from './developer/list-developers/list-developers.component';
 import { AuthService } from './services/auth.service';
+import { BaseModalComponent } from './shared/base-modal/base-modal.component';
 
 export const rootRouterConfig: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,5 +15,6 @@ export const rootRouterConfig: Routes = [
     {path: 'formulario', component: FormularioComponent },
     {path: 'add-developer', component: AddDeveloperComponent },
     {path: 'list-developers', component: ListDevelopersComponent },
-    {path: 'add-game', component: AddGameComponent }
+    {path: 'add-game', component: AddGameComponent },
+    {path: 'base-modal', component: BaseModalComponent }
 ]

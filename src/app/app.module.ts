@@ -34,6 +34,8 @@ import { PlatformTypeService } from './services/platformType.service';
 import { SliderComponent } from './shared/slider/slider.component';
 import { FormularioDevComponent } from './developer/formulario-dev/formulario-dev.component';
 import { MobileComboComponent } from './shared/componentes/mobile-combo/mobile-combo.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BaseModalComponent } from './shared/base-modal/base-modal.component';
 
 
 @NgModule({
@@ -50,7 +52,8 @@ import { MobileComboComponent } from './shared/componentes/mobile-combo/mobile-c
     ListDevelopersComponent,
     SliderComponent,
     FormularioDevComponent,
-    MobileComboComponent
+    MobileComboComponent,
+    BaseModalComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { MobileComboComponent } from './shared/componentes/mobile-combo/mobile-c
     CollapseModule.forRoot(),
     CarouselModule.forRoot(),    
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(
