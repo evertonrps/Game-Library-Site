@@ -1,10 +1,11 @@
 import { BaseResourceModel } from 'src/app/shared/models/base-resource.model';
 
 export class Developer extends BaseResourceModel {
-    constructor(id?: number,
-        name?: string,
-        founded?: string,
-        webSite?: string) {
+    constructor(
+        public id?: number,
+        public name?: string,
+        public founded?: string,
+        public webSite?: string) {
         super();
     }
 

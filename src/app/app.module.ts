@@ -36,6 +36,8 @@ import { FormularioDevComponent } from './developer/formulario-dev/formulario-de
 import { MobileComboComponent } from './shared/componentes/mobile-combo/mobile-combo.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BaseModalComponent } from './shared/base-modal/base-modal.component';
+import { CoreModule } from './core/core.module';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { BaseModalComponent } from './shared/base-modal/base-modal.component';
         positionClass: "toast-top-right"
       }
     ), // ToastrModule added
-    RouterModule.forRoot(rootRouterConfig, {useHash: false})
+    RouterModule.forRoot(rootRouterConfig, {useHash: false}),
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [
     DeveloperService,
