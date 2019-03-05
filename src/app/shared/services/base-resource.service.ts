@@ -17,7 +17,9 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   getAll(): Observable<T[]> {
-    return this.http.get(this.apiPath).pipe(
+    const url = `${this.UrlServiceV1}${this.apiPath}`;
+    return this.http.get(url).pipe(
+//    return this.http.get(this.apiPath).pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
     )
@@ -51,7 +53,8 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   delete(id: number): Observable<any> {
-    const url = `${this.apiPath}/${id}`;
+   // const url = `${this.apiPath}/${id}`;
+   const url = `${this.UrlServiceV1}${this.apiPath}/${id}`;
 
     return this.http.delete(url).pipe(
       map(() => null),

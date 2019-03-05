@@ -11,14 +11,34 @@
     <div class="form-group">
       <label>Founded:</label>
       <div>
-        <input type="text" class="form-control" id="founded" placeholder="dd/mm/yyyy" name="founded" formControlName="founded">
+        <input type="text" class="form-control" id="founded" placeholder="dd/mm/yyyy" name="founded"
+          formControlName="founded">          
       </div>
     </div>
 
+    <div class="row">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <input type="text"
+                 placeholder="Datepicker"
+                 class="form-control"
+                 bsDatepicker>
+        </div>
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <input type="text"
+                 placeholder="Daterangepicker"
+                 class="form-control"
+                 bsDaterangepicker>
+        </div>
+      </div>
+      
     <div class="form-group">
       <label>Websiste:</label>
-      <input type="text" class="form-control" id="webSite" placeholder="http://" name="webSite" formControlName="webSite">
+      <input type="text" class="form-control" id="webSite" placeholder="http://" name="webSite"
+        formControlName="webSite">
     </div>
-    <button type="submit" id="register" class="btn btn-default" [disabled]='!resourceForm.valid'>Submit</button>
+    <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
+      class="btn btn-primary btn-lg float-right mt-3">
+      Salvar
+    </button>
   </form>
 </div>
