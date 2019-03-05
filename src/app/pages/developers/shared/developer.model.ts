@@ -5,7 +5,9 @@ export class Developer extends BaseResourceModel {
         public id?: number,
         public name?: string,
         public founded?: string,
-        public webSite?: string) {
+        public webSite?: string,
+        public message?:string,
+        public statusCode?: number) {
         super();
     }
 
@@ -13,3 +15,11 @@ export class Developer extends BaseResourceModel {
         return Object.assign(new Developer(), jsonData);
       }
 }
+
+// item:[{
+//     id: number;
+//     name:string;
+//     founded: string;
+//     webSite: string;}];
+//     message:string;
+//     statusCode: number;

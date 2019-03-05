@@ -13,9 +13,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     protected injector: Injector,
     protected jsonDataToResourceFn: (jsonData: any) => T
   ) {
-    this.http = injector.get(HttpClient);
-    console.log(this.apiPath);
-    
+    this.http = injector.get(HttpClient);    
   }
 
   getAll(): Observable<T[]> {
@@ -26,7 +24,8 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   getById(id: number): Observable<T> {
-    const url = `${this.apiPath}/${id}`;
+    //const url = `${this.apiPath}/${id}`;
+    const url = `${this.UrlServiceV1}${this.apiPath}/${id}`;
 
     return this.http.get(url).pipe(
       map(this.jsonDataToResource.bind(this)),
