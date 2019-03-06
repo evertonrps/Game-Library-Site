@@ -6,22 +6,33 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 import { Developer } from '../shared/developer.model';
 import { DeveloperService } from '../shared/developer.service';
 
+import { defineLocale, listLocales } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+defineLocale('pt-br', ptBrLocale); 
+
 @Component({
   selector: 'app-developer-form',
   templateUrl: './developer-form.component.html',
   styleUrls: ['./developer-form.component.css']
 })
 export class DeveloperFormComponent extends BaseResourceFormComponent<Developer> {
-
-  constructor(protected developerService: DeveloperService, protected injector: Injector) {
-    super(injector, new Developer(), developerService, Developer.fromJson)
+  
+  constructor(protected developerService: DeveloperService, protected injector: Injector,
+    private localeService: BsLocaleService) {
+    super(injector, new Developer(), developerService, Developer.fromJson)    
   }
 
+  ngOnInit()
+  {
+    this.localeService.use('pt-br');
+    super.ngOnInit();
+  }
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
       id: [0],
       name:['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
-      founded: ['', [Validators.required, Validators.pattern('(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}')]],
+      founded: ['', [Validators.required]],
       webSite:''
     });
   }

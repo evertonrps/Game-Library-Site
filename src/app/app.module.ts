@@ -39,7 +39,6 @@ import { BaseModalComponent } from './shared/base-modal/base-modal.component';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
