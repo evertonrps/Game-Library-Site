@@ -1,0 +1,30 @@
+<div class="form-sec">
+  <h4>Developer form</h4>
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+    <div class="form-group">
+      <label>Name:</label>
+      <div>
+        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" formControlName="name" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Founded:</label>
+      <div>
+        <input type="text" class="form-control" id="founded" placeholder="dd/mm/yyyy" name="founded"
+          formControlName="founded" bsDatepicker [bsValue]="founded"
+          [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">          
+      </div>
+    </div>
+      
+    <div class="form-group">
+      <label>Websiste:</label>
+      <input type="text" class="form-control" id="webSite" placeholder="http://" name="webSite"
+        formControlName="webSite">
+    </div>
+    <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
+      class="btn btn-primary btn-lg float-right mt-3">
+      Salvar
+    </button>
+  </form>
+</div>

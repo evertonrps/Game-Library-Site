@@ -1,0 +1,23 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Founded</th>
+      <th scope="col">Web site</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let developer of resources'>
+      <td>{{developer.id}}</td>
+      <td>{{developer.name}}</td>
+      <td>{{developer.founded | date:'dd/MM/yyyy'}}</td>
+      <td>{{developer.webSite}}</td>
+      <td>
+        <a [routerLink]="['edit', developer.id]" class="btn btn-outline-info btn-sm mr-2">Editar</a>
+        <button (click)="deleteResource(developer)" class="btn btn-outline-danger btn-sm">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
