@@ -1,0 +1,18 @@
+
+  .btn-light
+  {
+    color: rgba(0,0,0,.5);
+  }
+.btn-light:hover {
+	color:rgba(0,0,0,.7);
+	background-color: transparent;
+  border-color: #f8f9fa;
+  text-decoration: none; 
+}
+
+.btn-light.dropdown-toggle
+{
+  background-color: transparent;
+  border-color: #f8f9fa;
+}
+

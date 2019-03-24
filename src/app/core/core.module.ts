@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   imports: [
@@ -11,10 +13,11 @@ import { BrowserModule } from '@angular/platform-browser';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    BsDropdownModule.forRoot() 
   ],
   declarations: [
-  ],
+  NavbarComponent],
   exports:[
     // shared modules
     BrowserModule,
@@ -22,6 +25,7 @@ import { BrowserModule } from '@angular/platform-browser';
     HttpClientModule,
 
     // shared components
+    NavbarComponent
   ]
 })
 export class CoreModule { }
