@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="#">My Fan Page</a>
@@ -12,29 +11,42 @@
 
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
             class="nav-link" [routerLink]="['/home']">Home</a></li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
-            class="nav-link" [routerLink]="['/list-games']">Games</a></li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
-            class="nav-link" [routerLink]="['/add-game']">Cadastrar Games</a></li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
-            class="nav-link" [routerLink]="['/formulario']">Contact</a></li>
-        
-        <li   class="nav-item dropdown">
+
+
+        <li class="nav-item dropdown">
           <div class="btn-group" dropdown>
-            <button id="button-basic" dropdownToggle type="button" class="btn btn-light dropdown-toggle"
-            aria-controls="dropdown-basic">
-            Developer<span class="caret"></span>
+            <button id="button-basic-games" dropdownToggle type="button" class="btn btn-light dropdown-toggle"
+              aria-controls="dropdown-basic-games">
+              Jogos<span class="caret"></span>
             </button>
-            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                <li role="menuitem"><a class="dropdown-item" [routerLink]="['/add-developer']">Register</a></li>
-                <li role="menuitem"><a class="dropdown-item" [routerLink]="['/list-developers']">Listar Games</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-                <li class="divider dropdown-divider"></li>
-                <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-                </li>
+            <ul id="dropdown-basic-games" *dropdownMenu class="dropdown-menu" role="menu"
+              aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" [routerLink]="['/games/new']">Register</a></li>
+              <li role="menuitem"><a class="dropdown-item" [routerLink]="['/games']">Listar Games</a></li>
             </ul>
           </div>
         </li>
+
+        <li class="nav-item dropdown">
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle type="button" class="btn btn-light dropdown-toggle"
+              aria-controls="dropdown-basic">
+              Desenvolvedoras<span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" [routerLink]="['/developers/new']">Cadastrar</a></li>
+              <li role="menuitem"><a class="dropdown-item" [routerLink]="['/developers']">Desenvolvedoras</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+              <li class="divider dropdown-divider"></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+            class="nav-link" [routerLink]="['/formulario']">Contact</a></li>
+
       </ul>
     </div>
   </div>

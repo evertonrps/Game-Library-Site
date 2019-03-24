@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div class="form-group" *ngIf='console'>
+    <!-- <div class="form-group" *ngIf='console'>
       <label class="checkbox-inline">
         <input type="checkbox" name="favoriteColors" Name="PC"> PC
       </label>
@@ -72,8 +72,11 @@
           <input type="checkbox" name="favoriteColors" lName="IOS"> IOS
         </label>
 
+      </div>  -->
+      
       <!-- <app-mobile-combo (mudouItem)="onMudouValor($event)"></app-mobile-combo>-->
-    </div> 
+    <br>
+    <app-platform-checkbox [exibirPlataforma]="itemSelecionado"></app-platform-checkbox>
 
     <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
       class="btn btn-primary btn-lg float-right mt-3">

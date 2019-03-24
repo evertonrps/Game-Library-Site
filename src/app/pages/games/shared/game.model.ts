@@ -6,7 +6,8 @@ export class Game extends BaseResourceModel {
     public id?: number,
     public title?: string,
     public description?: string,
-    public developerId?: number
+    public developerId?: number,
+    public platformTypeId?: number
   ) {
     super();
   }

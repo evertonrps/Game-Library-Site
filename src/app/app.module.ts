@@ -38,6 +38,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BaseModalComponent } from './shared/base-modal/base-modal.component';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
+import { PlatformFormComponent } from './pages/platforms/platform-form/platform-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AppRoutingModule } from './app-routing.module';
     SliderComponent,
     FormularioDevComponent,
     MobileComboComponent,
-    BaseModalComponent
+    BaseModalComponent,
+    PlatformFormComponent
   ],
   imports: [
     BrowserModule,

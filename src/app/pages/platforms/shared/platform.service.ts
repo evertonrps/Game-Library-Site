@@ -1,13 +1,13 @@
 import { Injectable, Injector } from '@angular/core';
+import { Platform } from './platform.model';
 import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
-import { Game } from './game.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GameService extends BaseResourceService<Game> {
+export class PlatformService extends BaseResourceService<Platform> {
 
   constructor(protected injector: Injector) {
-    super("api/games", injector, Game.fromJson);
+    super("api/platform", injector, Platform.fromJson);
   }
 }
