@@ -81,4 +81,7 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
       platforms => this.platformTypes = platforms
     );
   }
+
+  openModalWithComponent()
+  {}
 }

@@ -1,4 +1,4 @@
-<!------ Include the above in your HEAD tag ---------->
+<!-- ---- Include the above in your HEAD tag --------
 
 
 
@@ -41,7 +41,7 @@
       </div>
       <div class="form-group">        
         <br/>
-        <!-- <button class="btn btn-default align-text-bottom" type="button">Adicionar</button> -->
+
         <button type="button" class="mt-auto btn btn-primary" style="margin-top:4px; margin-left: 14px;" (click)="openModalWithComponent()">Adicionar Developer</button>        
       </div>
     </div>
@@ -78,15 +78,10 @@
     </div>
 
     <div class="form-group" *ngIf='mobile'>
-      <!-- <label class="checkbox-inline">
-          <input type="checkbox" name="favoriteColors" Name="Android"> Android
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" name="favoriteColors" lName="IOS"> IOS
-        </label> -->
+
       <app-mobile-combo (mudouItem)="onMudouValor($event)"></app-mobile-combo>
     </div>
 
     <button type="submit" class="btn btn-default" [disabled]='!gameForm.valid'>Submit</button>
   </form>
-</div>
+</div> -->
