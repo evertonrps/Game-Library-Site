@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector, Output, EventEmitter } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, ValidatorFn, FormArray } from '@angular/forms';
 
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource-form/base-resource-form.component';
 
@@ -22,6 +22,7 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
 
   developers: Array<Developer>;
   platformTypes: Array<PlatformType>;
+  gamePlatforms : Array<number>;
   console: boolean = false;
   public mobile: boolean = false;
   public itemSelecionado : number;
@@ -44,9 +45,11 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
       title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
       description: ['', Validators.maxLength(500)],
       developerId: ['', [Validators.required]],
-      platformTypeId: [0, [Validators.required]]
+      platformTypeId: [0, [Validators.required]],
+      gamePlatform:['',[]],
     })
   }
+  
 
   protected creationPageTitle(): string {
     return "Cadastro de Novo Jogo";
@@ -55,6 +58,11 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
   protected editionPageTitle(): string {
     const desenvolvedorName = this.resource.title || "";
     return "Editando Jogo: " + desenvolvedorName; 
+  }
+
+  submitForm(){
+
+    super.submitForm();
   }
 
   getValor(event: any) {
@@ -84,4 +92,12 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
 
   openModalWithComponent()
   {}
+
+  onRolesChange(value) {
+  //  this.userModel.roles = value;
+    this.gamePlatforms = value;
+    this.resourceForm.get('gamePlatform').setValue(value);
+    console.log('Selecionados:' , this.gamePlatforms);
+   }
 }
+

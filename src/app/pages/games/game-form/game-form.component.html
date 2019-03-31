@@ -76,7 +76,11 @@
       
       <!-- <app-mobile-combo (mudouItem)="onMudouValor($event)"></app-mobile-combo>-->
     <br>
-    <app-platform-checkbox [exibirPlataforma]="itemSelecionado"></app-platform-checkbox>
+    <!-- <app-platform-checkbox [exibirPlataforma]="itemSelecionado"></app-platform-checkbox> -->
+
+    <hr>
+
+    <app-checkbox-group (toggle)="onRolesChange($event)" [exibirPlataforma]="itemSelecionado"></app-checkbox-group>
 
     <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
       class="btn btn-primary btn-lg float-right mt-3">
