@@ -80,11 +80,15 @@
 
     <hr>
 
-    <app-checkbox-group (toggle)="onRolesChange($event)" [exibirPlataforma]="itemSelecionado"></app-checkbox-group>
+    <!-- <app-checkbox-group (toggle)="onRolesChange($event)" [exibirPlataforma]="itemSelecionado"></app-checkbox-group> -->
+
+    <hr>
+    <app-gameplatform-checkbox (toggle)="onRolesChange($event)" [exibirPlataforma]="plataformasSelecionadas"></app-gameplatform-checkbox>
 
     <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
       class="btn btn-primary btn-lg float-right mt-3">
       Salvar
     </button>
   </form>
+  <pre>Data Obtained is: {{ this.resourceForm.value | json }}</pre>
 </div>
