@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PlatformCheckboxComponent } from './components/platform-checkbox/platform-checkbox.component';
+import { GamePlatformCheckboxComponent } from './components/game-platform-checkbox/game-platform-checkbox.component';
 import { CheckboxGroupComponent } from './components/generic-checkbox/checkbox-group/checkbox-group.component';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { CheckboxGroupComponent } from './components/generic-checkbox/checkbox-g
     FormsModule
   ],
   declarations: [
-  PlatformCheckboxComponent,
+  GamePlatformCheckboxComponent,
   CheckboxGroupComponent],
   exports: [
     // shared modules
@@ -23,7 +23,7 @@ import { CheckboxGroupComponent } from './components/generic-checkbox/checkbox-g
     FormsModule,
 
     // shared components
-    PlatformCheckboxComponent,
+    GamePlatformCheckboxComponent,
     CheckboxGroupComponent,
   ]
 })

@@ -10,6 +10,7 @@ import { PlatformTypeService } from '../../platformType/shared/platformType.serv
 import { Developer } from '../../developers/shared/developer.model';
 import { DeveloperService } from '../../developers/shared/developer.service';
 import { isNgTemplate } from '@angular/compiler';
+import { GamePlatform } from '../../gamePlatform/shared/gamePlatform.model';
 
 
 
@@ -22,10 +23,12 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
 
   developers: Array<Developer>;
   platformTypes: Array<PlatformType>;
-  gamePlatforms : Array<number>;
+  //gamePlatforms : Array<number>;
+  gamePlatforms : Array<GamePlatform>;
   console: boolean = false;
   public mobile: boolean = false;
   public itemSelecionado : number;
+  public plataformasSelecionadas : Array<GamePlatform>;
 
   constructor(protected gameService: GameService, protected injector: Injector,
     protected developerService: DeveloperService,
@@ -46,7 +49,7 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
       description: ['', Validators.maxLength(500)],
       developerId: ['', [Validators.required]],
       platformTypeId: [0, [Validators.required]],
-      gamePlatform:['',[]],
+      gamePlatform:['',[]]
     })
   }
   
@@ -74,7 +77,8 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
       this.console = false;
       this.mobile = true;
     }
-    this.itemSelecionado = event.target.value
+    this.itemSelecionado = event.target.value;
+    this.plataformasSelecionadas = event.target.value;
     console.log('Selected value is: ', event.target.value);
   }
 
@@ -93,11 +97,18 @@ export class GameFormComponent extends BaseResourceFormComponent<Game> {
   openModalWithComponent()
   {}
 
-  onRolesChange(value) {
-  //  this.userModel.roles = value;
-    this.gamePlatforms = value;
-    this.resourceForm.get('gamePlatform').setValue(value);
-    console.log('Selecionados:' , this.gamePlatforms);
-   }
+  // onRolesChange(value) {
+  // //  this.userModel.roles = value;
+  //   this.gamePlatforms = value;
+  //   this.resourceForm.get('gamePlatform').setValue(value);
+  //   console.log('Selecionados:' , this.gamePlatforms);
+  //  }
+
+   onRolesChange(value) {
+    //  this.userModel.roles = value;
+      this.gamePlatforms = value;
+      this.resourceForm.get('gamePlatform').setValue(value);
+      console.log('Selecionados:' , this.gamePlatforms);
+     }   
 }
 
